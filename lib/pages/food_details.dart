@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '/models/food_item.dart';
+import '/providers/cart_provider.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final FoodItem food;
@@ -10,7 +12,7 @@ class FoodDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0,
         actions: const [
@@ -53,8 +55,8 @@ class FoodDetailsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding:
-                  const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12, horizontal: 20),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(12),
@@ -77,11 +79,23 @@ class FoodDetailsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () {
-                    // Order action
+                    Provider.of<CartProvider>(context, listen: false).addToCart(
+                      id: food.id,
+                      title: food.title,
+                      imagePath: food.imagePath,
+                      price: food.price,
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('${food.title} added to cart!'),
+                        duration:const Duration(seconds: 2),
+                      ),
+                    );
                   },
                   child: const Text(
-                    "ORDER NOW",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    "ADD TO CART",
+                    style:  TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],

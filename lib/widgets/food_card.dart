@@ -12,7 +12,7 @@ class FoodCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
+        boxShadow:const [ BoxShadow(color: Colors.black12, blurRadius: 6)],
       ),
       padding: const EdgeInsets.all(10),
       child: Column(

@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
 HomeScreen({super.key});
   final List<FoodItem> foodItems = [
     FoodItem(
+      id: "Food1",
       title: "Roasted Chicken",
       imagePath: "assets/images/roasted chicken.PNG",
       price: 6.0,
@@ -16,6 +17,7 @@ HomeScreen({super.key});
       "Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a rotisserie. Generally, the chicken is roasted with its own fat and juices by circulating the meat during roasting...",
     ),
     FoodItem(
+      id: "Food2",
       title: "Fried Chicken",
       imagePath: "assets/images/fried-chicken.jpg",
       price: 4.0,
@@ -23,6 +25,7 @@ HomeScreen({super.key});
       "Fried chicken is a dish consisting of chicken pieces that have been coated in a seasoned batter or breading and then deep-fried, pan-fried, or pressure-fried until the outer layer is crispy and golden brown. The inside remains juicy and tender.",
     ),
     FoodItem(
+      id: "Food3",
       title: "Hamburger",
       imagePath: "assets/images/hamburger.jpg",
       price: 2.8,
@@ -30,6 +33,7 @@ HomeScreen({super.key});
       "A hamburger, or simply a burger, is a dish consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll. The patties are often served with cheese, lettuce, tomato, onion, pickles, bacon, or condiments like ketchup, mustard, or mayo. A hamburger patty topped with cheese is called a cheeseburger.",
     ),
     FoodItem(
+      id: "Food4",
       title: "Cheeseburger",
       imagePath: "assets/images/cheeseburger.PNG",
       price: 3.5,
@@ -51,10 +55,10 @@ HomeScreen({super.key});
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                 const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
+                       Text(
                         "foodgo",
                         style: TextStyle(
                           fontFamily: "Lobster",
@@ -62,7 +66,7 @@ HomeScreen({super.key});
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const CircleAvatar(
+                       CircleAvatar(
                         radius: 25,
                         backgroundImage: AssetImage("assets/images/profile.jpg"),
                       ),
@@ -120,11 +124,11 @@ HomeScreen({super.key});
                   const SizedBox(height: 20),
 
                   // Categories
-                  Row(
+                 const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CategoryChip("All", isSelected: true),
-                      CategoryChip("Combos"),
+                    children:  [
+                     CategoryChip("All", isSelected: true),
+                     CategoryChip("Combos"),
                       CategoryChip("Sliders"),
                       CategoryChip("Classic"),
                     ],
