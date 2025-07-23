@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'dart:developer'; 
 
 class Onboarding extends StatelessWidget {
+  const Onboarding({super.key}); 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red, // Background color
+      backgroundColor: Colors.red, 
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // App name
+            
             Padding(
               padding: const EdgeInsets.only(top: 80.0),
               child: Center(
@@ -25,22 +28,21 @@ class Onboarding extends StatelessWidget {
               ),
             ),
 
-            // "Order a Meal" Button
+            
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/home');
-                // You can navigate to another screen here later
-                print('Order a Meal button pressed');
+                log('Order a Meal button pressed'); 
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.red,
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Order a Meal',
                 style: TextStyle(
                   fontSize: 18,
@@ -49,7 +51,7 @@ class Onboarding extends StatelessWidget {
               ),
             ),
 
-            // Image at the bottom
+            
             Padding(
               padding: const EdgeInsets.only(bottom: 30.0),
               child: Image.asset(

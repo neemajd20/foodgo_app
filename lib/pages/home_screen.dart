@@ -6,8 +6,7 @@ import '/pages/food_details.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
+HomeScreen({super.key});
   final List<FoodItem> foodItems = [
     FoodItem(
       title: "Roasted Chicken",
