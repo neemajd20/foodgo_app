@@ -2,15 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/models/food_item.dart';
 import '/providers/cart_provider.dart';
-import 'cart_screen.dart'; 
+import 'cart_screen.dart';
 
-class FoodDetailsPage extends StatelessWidget {
+class FoodDetailsPage extends StatefulWidget {
   final FoodItem food;
 
   const FoodDetailsPage({super.key, required this.food});
 
   @override
+  State<FoodDetailsPage> createState() => _FoodDetailsPageState();
+}
+
+class _FoodDetailsPageState extends State<FoodDetailsPage> {
+  void _handleAddToCart() {
+    final cart = Provider.of<CartProvider>(context, listen: false);
+    
+    cart.addToCart(
+      id: widget.food.id,
+      title: widget.food.title,
+      imagePath: widget.food.imagePath,
+      price: widget.food.price,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${widget.food.title} added to cart!'),
+        duration: const Duration(seconds: 1),
+      ),
+    );
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CartScreen()),
+        );
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final food = widget.food;
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(color: Colors.black),
@@ -79,32 +113,7 @@ class FoodDetailsPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
-                  onPressed: () {
-                    
-                    Provider.of<CartProvider>(context, listen: false).addToCart(
-                      id: food.id,
-                      title: food.title,
-                      imagePath: food.imagePath,
-                      price: food.price,
-                    );
-
-                    
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('${food.title} added to cart!'),
-                        duration: const Duration(seconds: 1),
-                      ),
-                    );
-
-                    
-                    Future.delayed(const Duration(milliseconds: 500), () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CartScreen()),
-                      );
-                    });
-                  },
+                  onPressed: _handleAddToCart,
                   child: const Text(
                     "ADD TO CART",
                     style: TextStyle(color: Colors.white, fontSize: 16),
