@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/models/food_item.dart';
 import '/providers/cart_provider.dart';
+import 'cart_screen.dart'; 
 
 class FoodDetailsPage extends StatelessWidget {
   final FoodItem food;
@@ -79,6 +80,7 @@ class FoodDetailsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () {
+                    
                     Provider.of<CartProvider>(context, listen: false).addToCart(
                       id: food.id,
                       title: food.title,
@@ -86,16 +88,26 @@ class FoodDetailsPage extends StatelessWidget {
                       price: food.price,
                     );
 
+                    
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('${food.title} added to cart!'),
-                        duration:const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                       ),
                     );
+
+                    
+                    Future.delayed(const Duration(milliseconds: 500), () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartScreen()),
+                      );
+                    });
                   },
                   child: const Text(
                     "ADD TO CART",
-                    style:  TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
