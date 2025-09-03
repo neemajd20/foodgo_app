@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PaymentPage extends StatefulWidget {
-  final double totalAmount; // ← receive totalAmount from CartScreen
+  final double totalAmount; 
 
   const PaymentPage({super.key, required this.totalAmount});
 
@@ -153,7 +153,6 @@ class _PaymentPageState extends State<PaymentPage> {
         onTap: (index) {},
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
