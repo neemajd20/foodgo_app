@@ -79,9 +79,9 @@ class CartScreen extends StatelessWidget {
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
-                    boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5)],
+                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
                   ),
                   child: Column(
                     children: [
