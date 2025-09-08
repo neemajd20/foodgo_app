@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
+import '../placeholder/placeholder_screen.dart'; 
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
+
+  // Define your settings in a list
+  final List<Map<String, String>> settings = const [
+    {
+      'title': 'Manage Account',
+      'subtitle': 'Update information and manage your account',
+    },
+    {
+      'title': 'Payment',
+      'subtitle': 'Manage payment methods and credits',
+    },
+    {
+      'title': 'Address',
+      'subtitle': 'Add or remove a delivery address',
+    },
+    {
+      'title': 'Notifications',
+      'subtitle': 'Manage delivery and promotional notifications',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage('assets/images/profile.png'), // Add your image
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
                   ),
                   const SizedBox(width: 12),
                   Text(
@@ -39,15 +60,17 @@ class ProfileScreen extends StatelessWidget {
               // Account Settings Title
               Text(
                 'Account Settings',
-                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
 
-              // Settings List
-              buildSettingsItem(context, 'Manage Account', 'Update information and manage your account'),
-              buildSettingsItem(context, 'Payment', 'Manage payment methods and credits'),
-              buildSettingsItem(context, 'Address', 'Add or remove a delivery address'),
-              buildSettingsItem(context, 'Notifications', 'Manage delivery and promotional notifications'),
+              // Render settings dynamically
+              ...settings.map((item) => buildSettingsItem(
+                    context,
+                    item['title']!,
+                    item['subtitle']!,
+                  )),
 
               const SizedBox(height: 30),
 
@@ -57,7 +80,8 @@ class ProfileScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isDark ? Colors.grey.shade800 : Colors.pink.shade50,
+                    backgroundColor:
+                        isDark ? Colors.grey.shade800 : Colors.pink.shade50,
                     foregroundColor: isDark ? Colors.white : Colors.black87,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -66,7 +90,8 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: const Text(
                     'Log Out',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
@@ -74,22 +99,10 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-
-      // Bottom Navigation Bar
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
-        selectedItemColor: isDark ? Colors.pinkAccent : Colors.brown,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: theme.colorScheme.surface,  items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-  
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
     );
   }
 
+  // Settings item widget
   Widget buildSettingsItem(BuildContext context, String title, String subtitle) {
     final theme = Theme.of(context);
     return ListTile(
@@ -99,7 +112,15 @@ class ProfileScreen extends StatelessWidget {
         style: TextStyle(color: theme.colorScheme.secondary),
       ),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-      onTap: () {},
+      onTap: () {
+        
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => PlaceholderScreen(title: title),
+          ),
+        );
+      },
     );
   }
 }

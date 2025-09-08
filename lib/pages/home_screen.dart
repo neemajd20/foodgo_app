@@ -4,9 +4,45 @@ import '/widgets/food_card.dart';
 import '/widgets/category_chip.dart';
 import '/pages/food_details.dart';
 
+// Placeholder Screens for Cart & Profile
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
 
-class HomeScreen extends StatelessWidget {
-HomeScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        'Cart Screen',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        'Profile Screen',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final int _currentIndex = 0;
+
   final List<FoodItem> foodItems = [
     FoodItem(
       id: "Food1",
@@ -14,7 +50,7 @@ HomeScreen({super.key});
       imagePath: "assets/images/roasted chicken.PNG",
       price: 6.0,
       description:
-      "Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a rotisserie. Generally, the chicken is roasted with its own fat and juices by circulating the meat during roasting...",
+          "Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a rotisserie. Generally, the chicken is roasted with its own fat and juices by circulating the meat during roasting...",
     ),
     FoodItem(
       id: "Food2",
@@ -22,7 +58,7 @@ HomeScreen({super.key});
       imagePath: "assets/images/fried-chicken.jpg",
       price: 4.0,
       description:
-      "Fried chicken is a dish consisting of chicken pieces that have been coated in a seasoned batter or breading and then deep-fried, pan-fried, or pressure-fried until the outer layer is crispy and golden brown. The inside remains juicy and tender.",
+          "Fried chicken is a dish consisting of chicken pieces that have been coated in a seasoned batter or breading and then deep-fried, pan-fried, or pressure-fried until the outer layer is crispy and golden brown. The inside remains juicy and tender.",
     ),
     FoodItem(
       id: "Food3",
@@ -30,7 +66,7 @@ HomeScreen({super.key});
       imagePath: "assets/images/hamburger.jpg",
       price: 2.8,
       description:
-      "A hamburger, or simply a burger, is a dish consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll. The patties are often served with cheese, lettuce, tomato, onion, pickles, bacon, or condiments like ketchup, mustard, or mayo. A hamburger patty topped with cheese is called a cheeseburger.",
+          "A hamburger, or simply a burger, is a dish consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll. The patties are often served with cheese, lettuce, tomato, onion, pickles, bacon, or condiments like ketchup, mustard, or mayo. A hamburger patty topped with cheese is called a cheeseburger.",
     ),
     FoodItem(
       id: "Food4",
@@ -38,12 +74,23 @@ HomeScreen({super.key});
       imagePath: "assets/images/cheeseburger.PNG",
       price: 3.5,
       description:
-      "A cheeseburger is a hamburger with a slice of melted cheese on top of the meat patty, added near the end of the cooking time. Cheeseburgers can include variations in structure, ingredients and composition. As with other hamburgers, a cheeseburger may include condiments and toppings like lettuce, tomato, onion, pickles, bacon, avocado, mushrooms, mayonnaise, ketchup, and mustard.",
+          "A cheeseburger is a hamburger with a slice of melted cheese on top of the meat patty, added near the end of the cooking time. Cheeseburgers can include variations in structure, ingredients and composition. As with other hamburgers, a cheeseburger may include condiments and toppings like lettuce, tomato, onion, pickles, bacon, avocado, mushrooms, mayonnaise, ketchup, and mustard.",
     ),
   ];
 
+  late final List<Widget> _pages;
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    _pages = [
+      _buildHomePage(), // Home tab
+      const CartScreen(), // Cart tab
+      const ProfileScreen(), // Profile tab
+    ];
+  }
+
+  Widget _buildHomePage() {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -55,10 +102,10 @@ HomeScreen({super.key});
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 const Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       Text(
+                      Text(
                         "foodgo",
                         style: TextStyle(
                           fontFamily: "Lobster",
@@ -66,7 +113,7 @@ HomeScreen({super.key});
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                       CircleAvatar(
+                      CircleAvatar(
                         radius: 25,
                         backgroundImage: AssetImage("assets/images/profile.jpg"),
                       ),
@@ -93,7 +140,10 @@ HomeScreen({super.key});
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: const [
-                              BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(2, 2)),
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 4,
+                                  offset: Offset(2, 2)),
                             ],
                           ),
                           child: const TextField(
@@ -124,11 +174,11 @@ HomeScreen({super.key});
                   const SizedBox(height: 20),
 
                   // Categories
-                 const Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
-                     CategoryChip("All", isSelected: true),
-                     CategoryChip("Combos"),
+                    children: [
+                      CategoryChip("All", isSelected: true),
+                      CategoryChip("Combos"),
                       CategoryChip("Sliders"),
                       CategoryChip("Classic"),
                     ],
@@ -161,13 +211,19 @@ HomeScreen({super.key});
                       child: FoodCard(item),
                     );
                   }).toList(),
-
                 ),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pages[_currentIndex],
     );
   }
 }

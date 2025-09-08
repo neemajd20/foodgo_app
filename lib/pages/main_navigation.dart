@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
+import 'home_screen.dart' hide CartScreen;
 
-import 'cart_screen.dart';
-import 'profile_screen.dart';
+import 'cart_screen.dart' as cart;
+import 'profile_screen.dart' as profile;
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -14,9 +14,9 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0; // Default tab = Home
   final List<Widget> _pages = [
-    HomeScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
+    const HomeScreen(),
+    const cart.CartScreen(),
+    const profile.ProfileScreen(),
   ];
 
   void switchToTab(int index) {

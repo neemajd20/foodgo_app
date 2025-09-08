@@ -126,7 +126,7 @@ class _PaymentPageState extends State<PaymentPage> {
             const SizedBox(height: 30),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.red,
                 minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -223,7 +223,7 @@ class OrderConfirmationPage extends StatelessWidget {
                 Navigator.popUntil(context, (route) => route.isFirst);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.red,
                 padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 30),
               ),
               child: const Text(
