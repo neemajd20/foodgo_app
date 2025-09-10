@@ -31,10 +31,6 @@ class MyApp extends StatelessWidget {
           '/home': (context) =>  const HomeScreen(),
           '/cart': (context) => const cart.CartScreen(),
           '/profile': (context) => const profile.ProfileScreen(),
-          //'/manage-account': (context) => const ManageAccountScreen(),
-          // '/manage-account': (context) => const ManageAccountScreen(),
-          // '/address': (context) => const AddressScreen(),
-          //'/notifications': (context) => const NotificationsScreen(),
         },
       ),
     );
